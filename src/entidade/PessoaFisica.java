@@ -5,12 +5,7 @@ public class PessoaFisica extends Pessoa {
 	private String cfp;
 
 	
-	
-	
-	
-
-
-	/**
+		/**
 	 * @param nome
 	 * @param email
 	 * @param sobrenome
@@ -20,6 +15,15 @@ public class PessoaFisica extends Pessoa {
 		this.cfp = cpf;
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
+	public PessoaFisica(int iD, String nome, String email, String sobrenome, String cfp) {
+			super(iD, nome, email, sobrenome);
+			this.cfp = cfp;
+		}
+
+
 
 	public PessoaFisica() {
 		// TODO Auto-generated constructor stub

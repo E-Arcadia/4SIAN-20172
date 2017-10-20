@@ -77,4 +77,51 @@ public class PessoaDAO {
 		return listaDePessoas;
 	}
 
+	public void alterar(Pessoa pessoa) {
+		String alterarSQL = "UPDATE PESSOA SET NOME=?, SOBRENOME=?, EMAIL=?, CPF_CNPJ=?, PJ_PF=? "
+				+ "WHERE ID = ?";
+		
+		try (Connection conn = new CNXHSQLDB().conectar(); 
+				PreparedStatement pst = conn.prepareStatement(alterarSQL);) {
+
+			pst.setString(1, pessoa.getNome());
+			pst.setString(2, pessoa.getSobrenome());
+			pst.setString(3, pessoa.getEmail());
+			if (pessoa instanceof PessoaFisica) {
+				PessoaFisica pf = (PessoaFisica) pessoa;
+				pst.setString(4, pf.getCfp());
+				pst.setString(5, "PF");
+			} else if (pessoa instanceof PessoaJuridica) {
+				PessoaJuridica pj = (PessoaJuridica) pessoa;
+				pst.setString(4, pj.getCnpj());
+				pst.setString(5, "PJ");
+			}
+			pst.setInt(6, pessoa.getID());
+			pst.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Erro ao executar o Statment " + e.toString());
+		}
+		
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

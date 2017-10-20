@@ -3,6 +3,7 @@ package entidade;
 //import java.util.Scanner;
 
 public class Pessoa {
+	private int ID;
 	private String nome;
 	private String email;
 	private boolean ativo;
@@ -12,6 +13,7 @@ public class Pessoa {
 		
 	}
 	
+	
 	public Pessoa(String nome, String email, String sobrenome) {
 		this.nome = nome;
 		this.email = email;
@@ -19,6 +21,24 @@ public class Pessoa {
 		this.ativo = true;
 	}
 	
+	
+	public Pessoa(int iD, String nome, String email, String sobrenome) {
+		super();
+		ID = iD;
+		this.nome = nome;
+		this.email = email;
+		this.sobrenome = sobrenome;
+	}
+
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
 	public String getEmail() {
 		return email;
 	}

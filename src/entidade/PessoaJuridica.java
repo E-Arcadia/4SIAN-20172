@@ -4,7 +4,6 @@ public class PessoaJuridica extends Pessoa{
 	
 	private String cnpj;
 
-	
 
 	/**
 	 * @param nome
@@ -16,6 +15,15 @@ public class PessoaJuridica extends Pessoa{
 		super(nome, email, sobrenome);
 		this.cnpj = cnpj;
 	}
+
+	
+	
+	public PessoaJuridica(int iD, String nome, String email, String sobrenome, String cnpj) {
+		super(iD, nome, email, sobrenome);
+		this.cnpj = cnpj;
+	}
+
+
 
 	public PessoaJuridica() {
 		// TODO Auto-generated constructor stub
