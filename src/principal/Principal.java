@@ -25,12 +25,21 @@ public class Principal {
 		
 		
 		// Alterar
-		PessoaFisica umaPessoa = new PessoaFisica(4, "JOÃO", 
+		PessoaFisica umaPessoa = new PessoaFisica(3, "JOÃO", 
 				"xxxx@souzas.com",
 				"xxxxx",
 				"123456789");
 		new PessoaDAO().alterar(umaPessoa);
 		
+		//Excluir
+		new PessoaDAO().excluir(5);
+		
+		
+		//Listar	
+				for(Pessoa p : new PessoaDAO().listaTudo()) {
+					System.out.println(p.toString());
+				}
+		
 		}
-
+	
 }

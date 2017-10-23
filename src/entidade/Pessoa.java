@@ -64,10 +64,14 @@ public class Pessoa {
 		return this.nome;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "Pessoa [nome=" + nome + ", email=" + email + ", sobrenome=" + sobrenome + ", ativo=" + ativo + "]";
+		return "Pessoa [ID=" + ID + ", nome=" + nome + ", email=" + email + ", ativo=" + ativo + ", sobrenome="
+				+ sobrenome + "]";
 	}
+
 
 	@Override
 	public int hashCode() {

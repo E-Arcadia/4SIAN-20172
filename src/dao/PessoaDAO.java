@@ -1,5 +1,6 @@
 package dao;
 
+import java.security.GeneralSecurityException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -55,6 +56,7 @@ public class PessoaDAO {
 
 				if (tipo.equals("PF")) {
 					PessoaFisica p = new PessoaFisica();
+					p.setID(rs.getInt("ID"));
 					p.setNome(rs.getString("NOME"));
 					p.setSobrenome(rs.getString("SOBRENOME"));
 					p.setEmail(rs.getString("EMAIL"));
@@ -62,6 +64,7 @@ public class PessoaDAO {
 					listaDePessoas.add(p);
 				} else if (tipo.equals("PJ")) {
 					PessoaJuridica p = new PessoaJuridica();
+					p.setID(rs.getInt("ID"));
 					p.setNome(rs.getString("NOME"));
 					p.setSobrenome(rs.getString("SOBRENOME"));
 					p.setEmail(rs.getString("EMAIL"));
@@ -79,7 +82,8 @@ public class PessoaDAO {
 
 	public void alterar(Pessoa pessoa) {
 		String alterarSQL = "UPDATE PESSOA SET NOME=?, SOBRENOME=?, EMAIL=?, CPF_CNPJ=?, PJ_PF=? "
-				+ "WHERE ID = ?";
+				+ "WHERE ID = ?"
+				+ "";
 		
 		try (Connection conn = new CNXHSQLDB().conectar(); 
 				PreparedStatement pst = conn.prepareStatement(alterarSQL);) {
@@ -99,6 +103,20 @@ public class PessoaDAO {
 			pst.setInt(6, pessoa.getID());
 			pst.executeUpdate();
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("Erro ao executar o Statment " + e.toString());
+		}
+		
+	}
+
+	public void excluir(int i) {
+		String excluirSQL = "DELETE FROM PESSOA WHERE ID = ?";
+		
+		try (Connection conn = new CNXHSQLDB().conectar(); 
+				PreparedStatement pst = conn.prepareStatement(excluirSQL);) {
+			pst.setInt(1, i);
+			pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Erro ao executar o Statment " + e.toString());
